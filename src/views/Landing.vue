@@ -1,21 +1,87 @@
 <template>
-  <div class="landing">
-    <img alt="Vue logo" src="../assets/logo.png">
+  <div class="landing h-100">
+    <div class="container">
+      <h1 class="title text-white align-left">Welcome to Gamma E-Auction</h1>
+      <h4 class="text-white align-left my-5">
+        Get started with Gamma E-Auction now!
+      </h4>
+      <div class="row">
+        <form class="col-6" @submit.prevent="submitSignin">
+          <div class="form-group">
+            <label for="username" class="text-white align-left">Username</label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              placeholder="Enter username"
+              v-model="user.username"
+            />
+          </div>
+          <div class="form-group mt-4">
+            <label for="password" class="text-white align-left">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              placeholder="Enter password"
+              v-model="user.password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary mt-3">Sign In</button>
+          <small class="text-white"
+            >Don't have an account?
+            <router-link to="/signup" class="text-white"
+              >Sign up</router-link
+            ></small
+          >
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: 'Landing',
-  components: {
-  }
-}
+  name: "Landing",
+  components: {},
+  data: () => ({
+    user: {
+      username: "",
+      password: "",
+    },
+  }),
+  methods: {
+    ...mapActions(["signin"]),
+    submitSignin() {
+      /* Check if name, username, and password are valid inputs */
+      if (this.user.username.length === 0 || this.user.password.length === 0) {
+        alert("Please fill out all fields");
+        return;
+      }
+
+      let userData = {
+        username: this.user.username,
+        password: this.user.password,
+      };
+
+      this.signin(userData).then((res) => {
+        if (res) {
+          if (res.success) {
+            this.$router.push("/home");
+          }
+        }
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-.landing{
+.landing {
+  min-height: 100vh;
   background-image: url("../assets/landing-bg.png");
+  background-size: 100% 100%;
 }
 </style>

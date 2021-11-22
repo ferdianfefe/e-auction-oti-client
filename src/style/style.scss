@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Source+Sans+Pro&display=swap");
+@import "text";
+@import "utils";
+@import "components";
+
+html {
+  font-size: 16px;
+  font-family: "Press Start 2P", cursive;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
