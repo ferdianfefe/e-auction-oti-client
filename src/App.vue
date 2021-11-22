@@ -1,6 +1,12 @@
 <template>
   <div id="app">
-    <Navbar v-if="$route.path !== '/' && $route.path !== '/signup'" />
+    <Navbar
+      v-if="
+        $route.name !== 'Signin' &&
+        $route.name !== 'Signup' &&
+        $route.name !== 'PageNotFound'
+      "
+    />
     <router-view />
   </div>
 </template>

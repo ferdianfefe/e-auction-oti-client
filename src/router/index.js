@@ -1,14 +1,25 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Landing from "../views/Landing.vue";
 
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: "/",
-    name: "Landing",
-    component: Landing,
+    name: "Home",
+    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/signin",
+    name: "Signin",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Signin.vue"),
+    meta: {
+      requiresGuest: true,
+    },
   },
   {
     path: "/signup",
@@ -18,6 +29,15 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Signup.vue"),
+    meta: {
+      requiresGuest: true,
+    },
+  },
+  {
+    path: "*",
+    name: "PageNotFound",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/PageNotFound.vue"),
   },
 ];
 
@@ -25,6 +45,24 @@ const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    if (localStorage.getItem("token")) {
+      next();
+      return;
+    }
+    next("/signin");
+  } else if (to.matched.some((record) => record.meta.requiresGuest)) {
+    if (!localStorage.getItem("token")) {
+      next();
+      return;
+    }
+    next("/");
+  } else {
+    next();
+  }
 });
 
 export default router;

@@ -1,5 +1,5 @@
 <template>
-  <div class="landing h-100">
+  <div class="signin h-100">
     <div class="container">
       <h1 class="title text-white align-left">Welcome to Gamma E-Auction</h1>
       <h4 class="text-white align-left my-5">
@@ -44,7 +44,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: "Landing",
+  name: "Signin",
   components: {},
   data: () => ({
     user: {
@@ -79,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.landing {
+.signin {
   min-height: 100vh;
   background-image: url("../assets/landing-bg.png");
   background-size: 100% 100%;
