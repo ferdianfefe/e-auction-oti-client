@@ -69,7 +69,7 @@ export default {
       this.signin(userData).then((res) => {
         if (res) {
           if (res.success) {
-            this.$router.push("/home");
+            this.$router.push("/");
           }
         }
       });

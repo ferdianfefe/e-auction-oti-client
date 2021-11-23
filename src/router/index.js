@@ -34,6 +34,21 @@ const routes = [
     },
   },
   {
+    path: "/auction/new",
+    name: "NewAuction",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/NewAuction.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/auction/:id",
+    name: "Auction",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Auction.vue"),
+  },
+  {
     path: "*",
     name: "PageNotFound",
     component: () =>

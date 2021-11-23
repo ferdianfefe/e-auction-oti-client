@@ -20,8 +20,11 @@ const actions = {
     commit("auth_request");
     try {
       const { data } = await axios.post(API_URL + "signin", user);
-
+      console.log(data);
       localStorage.setItem("token", data.token);
+
+      axios.defaults.headers.common.authorization = data.token;
+
       commit("auth_success", data);
       return data;
     } catch (error) {
