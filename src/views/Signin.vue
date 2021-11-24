@@ -27,13 +27,15 @@
               v-model="user.password"
             />
           </div>
-          <button type="submit" class="btn btn-primary mt-3">Sign In</button>
-          <small class="text-white"
-            >Don't have an account?
-            <router-link to="/signup" class="text-white"
-              >Sign up</router-link
-            ></small
-          >
+          <div class="signin-buttons">
+            <button type="submit" class="btn btn-primary mt-3">Sign In</button>
+            <small class="text-white">
+              Don't have an account?
+              <router-link to="/signup" class="text-white">
+              Sign up</router-link>
+              </small>
+          </div>
+          
         </form>
       </div>
     </div>
@@ -81,7 +83,29 @@ export default {
 <style lang="scss" scoped>
 .signin {
   min-height: 100vh;
-  background-image: url("../assets/landing-bg.png");
-  background-size: 100% 100%;
+  background-position: bottom;
+  transition: 0.4s;
+
+  background: linear-gradient(
+      180deg,
+      rgba(75, 24, 24, 0.58) 0%,
+      rgba(3, 13, 52, 0.5) 68.75%,
+      #141341 97.4%
+    ),
+    url("../assets/landing-bg.png");
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.btn {
+  margin-bottom: 15px;
+}
+.signin-buttons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5%;
 }
 </style>
