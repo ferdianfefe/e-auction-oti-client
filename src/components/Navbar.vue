@@ -8,6 +8,7 @@
           align-items-center
           justify-content-center justify-content-lg-start
         "
+        id="nav"
       >
         <router-link
           to="/"
