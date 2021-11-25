@@ -1,39 +1,53 @@
 <template>
   <div class="signin h-100">
     <div class="container">
-      <h1 class="title text-white align-left">Welcome to Gamma E-Auction</h1>
-      <h4 class="text-white align-left my-5">
-        Get started with Gamma E-Auction now!
+      <h1 class="title">Welcome to Gamma.</h1>
+      <br>
+      <h4 class="getstarted">
+        Get started with Gamma now!
       </h4>
-      <div class="row">
+      <div class="mainblur">
+
         <form class="col-6" @submit.prevent="submitSignin">
+
+          <p class ="login">Login.</p>
+          <br>
+
           <div class="form-group">
-            <label for="username" class="text-white align-left">Username</label>
+            <label for="username" class="userpass">Username</label>
             <input
               type="text"
               class="form-control"
+              style="border-radius: 22px; width: 300px; height: 40px; padding-left:20px;"
               id="username"
               placeholder="Enter username"
               v-model="user.username"
             />
           </div>
+
           <div class="form-group mt-4">
-            <label for="password" class="text-white align-left">Password</label>
+            <label for="password" class="userpass">Password</label>
             <input
               type="password"
               class="form-control"
+              style="border-radius: 22px; width: 300px; height: 40px; padding-left:20px;"
               id="password"
               placeholder="Enter password"
               v-model="user.password"
             />
           </div>
-          <button type="submit" class="btn btn-primary mt-3">Sign In</button>
-          <small class="text-white"
-            >Don't have an account?
-            <router-link to="/signup" class="text-white"
-              >Sign up</router-link
-            ></small
-          >
+
+          <br>
+
+          <div class="signinpadding">
+            <button type="submit" class="btn btn-primary mt-3" style="border-radius: 10px; font-weight:bold; font-size: 20px;">Log in</button>
+            <br><br>
+            <small class="donthave">
+            Don't have an account? <router-link to="/signup" class="donthave" style="font-size:20px;">Sign up</router-link>
+            </small>
+          </div>
+
+
         </form>
       </div>
     </div>
@@ -79,9 +93,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 .signin {
   min-height: 100vh;
-  background-image: url("../assets/landing-bg.png");
+  background-image: url("../assets/newbackground.jpg");
   background-size: 100% 100%;
 }
 </style>
