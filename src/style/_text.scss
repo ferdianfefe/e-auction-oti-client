@@ -1,9 +1,62 @@
 .title {
-  font-size: 3rem;
-  font-weight: 700;
+  color: white;
+  font-size: 100px;
+  font-weight: bolder;
+  text-align: center;
   // margin: 0;
 }
 
 .text-white {
   color: white;
+
+}
+
+.login{
+  font-size: 50px;
+  color: white;
+  font-weight: bold;
+}
+
+.leftpadding{
+  padding-left: 50px;
+}
+
+.getstarted{
+  font-size: 35px;
+  color: white;
+  font-weight: bold;
+  padding-top: 20px;
+  padding-bottom: 30px;
+  padding-left: 30px;
+}
+
+.userpass{
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  padding-left: 20px;
+
+}
+
+.donthave{
+  color: white;
+  font-size: 15px;
+  padding-left: 10px;
+  font-weight: bold;
+
+}
+
+.signinpadding{
+  padding-left: 10px;
+
+}
+
+.mainblur{
+  backdrop-filter: blur(10px);
+  width: 100%;
+  border: 2px solid rgb(153, 153, 153);
+  border-radius: 50px;
+  padding: 50px;
+  padding-top: 50px;
+
 }
