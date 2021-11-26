@@ -49,6 +49,12 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/Auction.vue"),
   },
   {
+    path: "/coin",
+    name: "GammaCoin",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/GammaCoin.vue"),
+  },
+  {
     path: "*",
     name: "PageNotFound",
     component: () =>

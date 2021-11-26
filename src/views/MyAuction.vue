@@ -50,6 +50,6 @@ export default {
 .home {
   min-height: 100vh;
   background-image: url("../assets/landing-bg.png");
-  background-size: auto 100vw;
+  background-size: 100% 100%;
 }
 </style>

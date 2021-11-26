@@ -4,68 +4,66 @@
       <h1 class="title text-white align-left">New Auction</h1>
       <form @submit.prevent="submitAuction">
         <div class="auction-forms">
-
           <div class="left-forms">
             <div class="item-form">
               <div class="form-group">
-              <label for="title">Auction Title</label>
-              <input
-                type="text"
-                class="form-control"
-                id="title"
-                v-model="auctionData.title"
-              />
-            </div>
-            <div class="form-group">
-              <label for="item-name">Item Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="item-name"
-                v-model="auctionData.itemName"
-              />
-            </div>
-            <div class="form-group">
-              <label for="starting-price">Starting Price</label>
-              <div class="input-group mb-2 mr-sm-2">
+                <label for="title">Auction Title</label>
                 <input
-                  type="number"
+                  type="text"
                   class="form-control"
-                  id="starting-price"
-                  placeholder="Starting price (in GammaCoin)"
-                  v-model="auctionData.startingPrice"
+                  id="title"
+                  v-model="auctionData.title"
                 />
-                <div class="input-group-prepend">
-                  <div class="input-group-text">GC</div>
+              </div>
+              <div class="form-group">
+                <label for="item-name">Item Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="item-name"
+                  v-model="auctionData.itemName"
+                />
+              </div>
+              <div class="form-group">
+                <label for="starting-price">Starting Price</label>
+                <div class="input-group mb-2 mr-sm-2">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="starting-price"
+                    placeholder="Starting price (in GammaCoin)"
+                    v-model="auctionData.startingPrice"
+                  />
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">GC</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-          
-          
+
           <div class="right-forms">
             <div class="form-group">
-            <label for="">Item Images</label>
-            <vue-upload-multiple-image
-              @upload-success="uploadImageSuccess"
-              @before-remove="beforeRemove"
-              @edit-image="editImage"
-              :data-images="auctionData.images"
-              idUpload="myIdUpload"
-              editUpload="myIdEdit"
-              dragText="Drop images here to upload"
-              browseText="Search images"
-              primaryText="Upload images"
-              markIsPrimaryText="Upload images"
-              popupText="Upload images"
-              dropText="Drop images here to upload"
-            >
-            </vue-upload-multiple-image>
+              <label for="">Item Images</label>
+              <vue-upload-multiple-image
+                @upload-success="uploadImageSuccess"
+                @before-remove="beforeRemove"
+                @edit-image="editImage"
+                :data-images="auctionData.images"
+                idUpload="myIdUpload"
+                editUpload="myIdEdit"
+                dragText="Drop images here to upload"
+                browseText="Search images"
+                primaryText="Upload images"
+                markIsPrimaryText="Upload images"
+                popupText="Upload images"
+                dropText="Drop images here to upload"
+              >
+              </vue-upload-multiple-image>
             </div>
-              <button type="submit" class="btn btn-primary">Save</button>  
-            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
           </div>
+        </div>
       </form>
     </div>
   </div>
@@ -116,7 +114,7 @@ export default {
       this.createAuction(itemData).then((res) => {
         if (res) {
           if (res.success) {
-            // this.$router.push("/");
+            this.$router.push("/");
           }
         }
       });
@@ -148,45 +146,44 @@ body {
 .new-auction {
   min-height: 90vh;
 }
-label{
+label {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   text-align: left;
   color: white;
 }
-.auction-forms{
+.auction-forms {
   display: flex;
   margin-top: 10vh;
   flex-direction: row wrap;
   column-count: 2;
   justify-content: space-around;
 }
-.left-forms{
+.left-forms {
   width: 40vw;
 }
-.right-forms{
+.right-forms {
   display: flex;
   flex-direction: column;
 }
-h1{
+h1 {
   padding-left: 7vw;
 }
-h4{
+h4 {
   font-style: normal;
   font-weight: 600;
 }
-.form-group{
+.form-group {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   text-align: left;
 }
-.btn{
+.btn {
   border-radius: 50px;
 }
-.form-control{
+.form-control {
   border-radius: 50px;
-
 }
 </style>

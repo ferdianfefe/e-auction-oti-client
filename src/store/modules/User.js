@@ -4,7 +4,7 @@ const API_URL = "http://localhost:8000/api/user/";
 
 const state = {
   user: {},
-  token: localStorage.getItem("user-token") || "",
+  token: localStorage.getItem("token"),
   status: "",
   error: "",
 };

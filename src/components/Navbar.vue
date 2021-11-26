@@ -37,12 +37,12 @@
               >Home</router-link
             >
           </li>
-          <li>
+          <li class="">
             <router-link
               class="nav-link px-2 link-dark"
-              to="/chat"
-              v-if="!isAuthenticated"
-              >Chat</router-link
+              to="/coin"
+              v-if="isAuthenticated"
+              >GammaCoin</router-link
             >
           </li>
           <li class="">
