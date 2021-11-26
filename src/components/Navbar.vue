@@ -88,14 +88,10 @@
           />
         </form>
 
-        <div class="dropdown text-end">
-          <a
-            href="#"
-            class="d-block link-dark text-decoration-none dropdown-toggle"
-            id="userDropdown"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
+      <div class="drop-menu">
+        <b-dropdown id="dropdown-right" right variant="invisible">
+          <template #button-content>
+            <a>
             <img
               src="https://github.com/mdo.png"
               alt="mdo"
@@ -103,15 +99,16 @@
               height="32"
               class="rounded-circle"
             />
-          </a>
-          <div class="dropdown-menu text-small" aria-labelledby="userDropdown">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
-          </div>
-        </div>
+            </a>
+          </template>
+            <b-dropdown-item><a class="dropdown-item" href="#">New project...</a></b-dropdown-item>
+            <b-dropdown-item><a class="dropdown-item" href="#">Settings</a></b-dropdown-item>
+            <b-dropdown-item><a class="dropdown-item" href="#">Profile</a></b-dropdown-item>
+            <b-dropdown-divider></b-dropdown-divider>
+            <b-dropdown-item><a class="dropdown-item" href="#">Sign out</a></b-dropdown-item>
+        </b-dropdown>
+
+      </div>
       </div>
     </div>
   </header>
@@ -188,4 +185,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.drop-menu{
+  background: none;
+}
+</style>
