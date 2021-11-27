@@ -109,8 +109,22 @@ export default {
 
 <style lang="scss" scoped>
 .landing {
+  margin: 0;
+  padding: 0;
+
   min-height: 100vh;
-  background-image: url("../assets/landing-bg.png");
-  background-size: 100% 100%;
+  background-position: bottom;
+  transition: 0.4s;
+
+  background: linear-gradient(
+      180deg,
+      rgba(75, 24, 24, 0.58) 0%,
+      rgba(3, 13, 52, 0.5) 68.75%,
+      #141341 97.4%
+    ),
+    url("../assets/landing-bg.png");
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 </style>

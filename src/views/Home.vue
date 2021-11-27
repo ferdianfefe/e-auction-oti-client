@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+      <!-- image on top section -->
+    <img id="placeholder" src="../assets/auction-placeholder.jpeg" alt="">
     <div class="d-flex container justify-content-end">
       <router-link to="/auction/new"
         ><button type="button" class="btn btn-primary">
@@ -49,7 +51,15 @@ export default {
 <style>
 .home {
   min-height: 100vh;
-  background-image: url("../assets/landing-bg.png");
-  background-size: auto 100vw;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
+}
+
+#placeholder{
+  width: 100%;
+  height: auto;
 }
 </style>

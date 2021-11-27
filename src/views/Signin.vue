@@ -99,4 +99,7 @@ export default {
   background-image: url("../assets/newbackground.jpg");
   background-size: 100% 100%;
 }
+.title{
+  color: white;
+}
 </style>

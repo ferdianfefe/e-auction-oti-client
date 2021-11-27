@@ -1,7 +1,7 @@
 <template>
   <div class="new-auction">
     <div class="container">
-      <h1 class="title text-white align-left">New Auction</h1>
+      <h2 class="titleA text-black align-left">New Listing</h2>
       <form @submit.prevent="submitAuction">
         <div class="auction-forms">
           <div class="left-forms">
@@ -124,66 +124,67 @@ export default {
 </script>
 
 <style>
+header{
+  background: white;
+}
 body {
   margin: 0;
   padding: 0;
-
-  min-height: 100vh;
-  background-position: bottom;
-  transition: 0.4s;
-
-  background: linear-gradient(
-      180deg,
-      rgba(75, 24, 24, 0.58) 0%,
-      rgba(3, 13, 52, 0.5) 68.75%,
-      #141341 97.4%
-    ),
-    url("../assets/landing-bg.png");
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  background-size: 100%;
-  background-repeat: no-repeat;
+  background: #F2F1F1;  
 }
 .new-auction {
-  min-height: 90vh;
+  margin: 0;
+  padding: 0;
 }
-label {
+.container{
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+label{
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   text-align: left;
-  color: white;
 }
-.auction-forms {
+
+.auction-forms{
   display: flex;
-  margin-top: 10vh;
   flex-direction: row wrap;
   column-count: 2;
   justify-content: space-around;
+
+  width: 98.8vw;
+  padding-top: 2rem;
 }
-.left-forms {
+.left-forms{
   width: 40vw;
 }
-.right-forms {
+.right-forms{
   display: flex;
   flex-direction: column;
 }
-h1 {
-  padding-left: 7vw;
+.titleA{
+  padding-left: 10vw;
+  font-size: 3rem;
+  font-family: Montserrat;
 }
-h4 {
+h4{
+  font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
 }
-.form-group {
+/* forms */
+.form-group{
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   text-align: left;
 }
-.btn {
-  border-radius: 50px;
-}
-.form-control {
-  border-radius: 50px;
+
+/* text to black */
+li a, h1, h2, .title, label{
+  color: black;
 }
 </style>
