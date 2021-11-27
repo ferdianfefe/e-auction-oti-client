@@ -1,7 +1,7 @@
 <template>
   <div class="new-auction">
     <div class="container">
-      <h1 class="titleA text-white align-left">New Listing</h1>
+      <h2 class="titleA text-black align-left">New Listing</h2>
       <form @submit.prevent="submitAuction">
         <div class="auction-forms">
           <div class="left-forms">
