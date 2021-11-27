@@ -13,7 +13,6 @@
 
 .text-white {
   color: white;
-
 }
 
 .login{
@@ -53,7 +52,6 @@
 
 .signinpadding{
   padding-left: 10px;
-
 }
 
 .mainblur{
@@ -68,16 +66,20 @@
 
 // Navigation
 h1{
-  color: white;
+  margin-left: 0;
 }
 ul{
   margin-left: 2rem;
 }
 
 li a {
-  color: white;
   font-family: Montserrat;
   font-style: normal;
   font-weight: bold;
   margin-right: 2rem;
+}
+
+/* text to black */
+li a, h1, h2, .title, label{
+  color: black;
 }
