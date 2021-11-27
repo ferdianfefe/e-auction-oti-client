@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+      <!-- image on top section -->
+    <img id="placeholder" src="../assets/auction-placeholder.jpeg" alt="">
     <div class="d-flex container justify-content-end">
       <router-link to="/auction/new"
         ><button type="button" class="btn btn-primary">
