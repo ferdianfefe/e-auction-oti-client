@@ -37,6 +37,13 @@
               >Home</router-link
             >
           </li>
+          <li>
+            <router-link
+              class="nav-link px-2 link-dark"
+              to="/about"
+              >About</router-link
+            >
+          </li>
           <li class="">
             <router-link
               class="nav-link px-2 link-dark"
@@ -48,7 +55,7 @@
           <li class="">
             <router-link
               class="nav-link px-2 link-dark"
-              to="/register"
+              to="/signup"
               v-if="!isAuthenticated"
               >Register</router-link
             >
