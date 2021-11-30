@@ -1,7 +1,9 @@
 <template>
   <div class="new-auction">
     <div class="container">
-      <h2 class="titleA text-black align-left">New Listing</h2>
+      <div class="textbox">
+          <h2 class="titleA text-black align-left">New Listing</h2>
+      </div>
       <form @submit.prevent="submitAuction">
         <div class="auction-forms">
           <div class="left-forms">
@@ -10,8 +12,9 @@
                 <label for="title">Auction Title</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
                   id="title"
+                  placeholder="Enter Listing title"
                   v-model="auctionData.title"
                 />
               </div>
@@ -19,17 +22,18 @@
                 <label for="item-name">Item Name</label>
                 <input
                   type="text"
-                  class="form-control"
+                  class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
                   id="item-name"
+                  placeholder="Enter Item name"
                   v-model="auctionData.itemName"
                 />
               </div>
-              <div class="form-group">
+              <div class="form-group" >
                 <label for="starting-price">Starting Price</label>
-                <div class="input-group mb-2 mr-sm-2">
+                <div class="u-form-group u-form-starting-price" id="item-price">
                   <input
                     type="number"
-                    class="form-control"
+                    class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
                     id="starting-price"
                     placeholder="Starting price (in GammaCoin)"
                     v-model="auctionData.startingPrice"
@@ -41,10 +45,8 @@
               </div>
             </div>
           </div>
-
           <div class="right-forms">
             <div class="form-group">
-              <label for="">Item Images</label>
               <vue-upload-multiple-image
                 @upload-success="uploadImageSuccess"
                 @before-remove="beforeRemove"
@@ -61,7 +63,9 @@
               >
               </vue-upload-multiple-image>
             </div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1">
+              Submit
+            </button>
           </div>
         </div>
       </form>
@@ -112,6 +116,7 @@ export default {
       };
 
       this.createAuction(itemData).then((res) => {
+        console.log("Attempting Listing");
         if (res) {
           if (res.success) {
             this.$router.push("/");
@@ -124,56 +129,79 @@ export default {
 </script>
 
 <style>
+.input-group-prepend{
+  width: 10%;
+  padding-left: 10px;
+}
+.input-group-text{
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  text-align: left;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+#item-price{
+display: flex;
+flex-direction: row;
+}
 header{
   background: white;
 }
 body {
-  margin: 0;
-  padding: 0;
-  background: #F2F1F1;  
+  background: #f2f2f2;
+  width: 100%;
 }
-.new-auction {
-  margin: 0;
-  padding: 0;
-}
+
 .container{
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
 }
 label{
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
-  text-align: left;
+  text-align: center;
 }
-
+.auction-forms, .textbox{
+  background: white;
+}
 .auction-forms{
   display: flex;
-  flex-direction: row wrap;
-  column-count: 2;
-  justify-content: space-around;
-
-  width: 98.8vw;
+  flex-direction: row;
+  justify-content: center;
   padding-top: 2rem;
+}
+@media (max-width: 1000px) {
+  .auction-forms {
+    flex-direction: column;
+  }
 }
 .left-forms{
   width: 40vw;
+  min-width: 20vw;
+  margin: 2rem;
 }
 .right-forms{
-  display: flex;
-  flex-direction: column;
+  margin: 2rem;
+  width: 190px;
 }
+
 .titleA{
-  padding-left: 10vw;
   font-size: 3rem;
   font-family: Montserrat;
+  text-align: center;
+  font-weight: bolder;
 }
 h4{
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
+  background: white;
 }
 /* forms */
 .form-group{
@@ -181,6 +209,10 @@ h4{
   font-style: normal;
   font-weight: 600;
   text-align: left;
+  width: 100%;
+}
+button{
+  width: 100%;
 }
 
 /* text to black */
