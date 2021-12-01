@@ -2,7 +2,7 @@
   <div class="new-auction">
     <div class="container">
       <div class="textbox">
-          <h2 class="titleA text-black align-left">New Listing</h2>
+        <h2 class="titleA text-black align-left">New Listing</h2>
       </div>
       <form @submit.prevent="submitAuction">
         <div class="auction-forms">
@@ -28,7 +28,7 @@
                   v-model="auctionData.itemName"
                 />
               </div>
-              <div class="form-group" >
+              <div class="form-group">
                 <label for="starting-price">Starting Price</label>
                 <div class="u-form-group u-form-starting-price" id="item-price">
                   <input
@@ -63,7 +63,10 @@
               >
               </vue-upload-multiple-image>
             </div>
-            <button type="submit" class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1">
+            <button
+              type="submit"
+              class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1"
+            >
               Submit
             </button>
           </div>
@@ -103,11 +106,8 @@ export default {
       }
       console.log(this.imagesauctionData.images);
     },
-    editImage(file) {
-      console.log("edit data", file);
-    },
+    editImage(file) {},
     submitAuction() {
-      console.log("submit auction", this.auctionData);
       let itemData = {
         title: this.auctionData.title,
         itemName: this.auctionData.itemName,
@@ -129,11 +129,11 @@ export default {
 </script>
 
 <style>
-.input-group-prepend{
+.input-group-prepend {
   width: 10%;
   padding-left: 10px;
 }
-.input-group-text{
+.input-group-text {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
@@ -143,11 +143,11 @@ export default {
   border: none;
 }
 
-#item-price{
-display: flex;
-flex-direction: row;
+#item-price {
+  display: flex;
+  flex-direction: row;
 }
-header{
+header {
   background: white;
 }
 body {
@@ -155,22 +155,22 @@ body {
   width: 100%;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   width: 100%;
-
 }
-label{
+label {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   text-align: center;
 }
-.auction-forms, .textbox{
+.auction-forms,
+.textbox {
   background: white;
 }
-.auction-forms{
+.auction-forms {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -181,42 +181,46 @@ label{
     flex-direction: column;
   }
 }
-.left-forms{
+.left-forms {
   width: 40vw;
   min-width: 20vw;
   margin: 2rem;
 }
-.right-forms{
+.right-forms {
   margin: 2rem;
   width: 190px;
 }
 
-.titleA{
+.titleA {
   font-size: 3rem;
   font-family: Montserrat;
   text-align: center;
   font-weight: bolder;
 }
-h4{
+h4 {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   background: white;
 }
 /* forms */
-.form-group{
+.form-group {
   font-family: Montserrat;
   font-style: normal;
   font-weight: 600;
   text-align: left;
   width: 100%;
 }
-button{
+button {
   width: 100%;
 }
 
 /* text to black */
-li a, h1, h2, .title, label{
+li a,
+h1,
+h2,
+.title,
+label {
   color: black;
 }
 </style>
