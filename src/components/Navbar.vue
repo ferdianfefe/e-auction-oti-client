@@ -19,8 +19,14 @@
             text-dark text-decoration-none
           "
         >
-          <h1>G</h1>
-        </router-link>
+        <img
+            src="../assets/logo.png"
+            alt="mdo"
+            width="48"
+            height="48"
+            class="rounded-circle"
+          />        
+          </router-link>
 
         <ul
           class="
