@@ -95,13 +95,15 @@ export default {
   methods: {
     ...mapActions(["getAuctionById", "placeBid"]),
     submitBid() {
-      this.placeBid({
-        bid: this.bidData.bid,
-        auctionId: this.currentAuction._id,
-      }).then(() => {
-        this.bidData.bid = 0;
-        this.getAuctionById(this.currentAuction._id);
-      });
+      if (this.bidData.bid > 0) {
+        this.placeBid({
+          bid: this.bidData.bid,
+          auctionId: this.currentAuction._id,
+        }).then(() => {
+          this.bidData.bid = 0;
+          this.getAuctionById(this.currentAuction._id);
+        });
+      }
     },
   },
   mounted() {

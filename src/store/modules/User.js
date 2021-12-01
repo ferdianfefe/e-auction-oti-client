@@ -6,6 +6,7 @@ const API_URL = "http://localhost:8000/api/user/";
 const state = {
   user: {},
   token: localStorage.getItem("token"),
+  contacts: [],
   status: "",
   error: "",
 };
@@ -13,6 +14,7 @@ const state = {
 const getters = {
   isAuthenticated: (state) => !!state.token,
   status: (state) => state.status,
+  contacts: (state) => state.contacts,
   user: (state) => state.user,
   error: (state) => state.error,
 };
@@ -63,6 +65,20 @@ const actions = {
       throw error;
     }
   },
+
+  async getContacts({ commit }) {
+    commit("get_contacts_request");
+    try {
+      const res = await axios.get(`${API_URL}/contact`);
+      if (res.data.success) {
+        commit("get_contacts_success", res.data.value);
+      }
+      return res;
+    } catch (error) {
+      commit("get_contacts_error", error);
+      throw error;
+    }
+  },
 };
 
 const mutations = {
@@ -73,6 +89,17 @@ const mutations = {
     state.status = "success";
     state.token = token;
     state.user = user;
+  },
+  get_contacts_request(state) {
+    state.status = "loading";
+  },
+  get_contacts_success(state, contacts) {
+    state.status = "success";
+    state.contacts = contacts;
+  },
+  get_contacts_error(state, error) {
+    state.status = "error";
+    state.error = error;
   },
   auth_error(state) {
     state.status = "error";

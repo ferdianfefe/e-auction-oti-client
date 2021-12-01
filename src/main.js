@@ -6,6 +6,8 @@ try {
 }
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 import axios from "axios";
+import moment from "moment";
+import VueSocketIO from "vue-socket.io";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
@@ -28,6 +30,21 @@ const token = localStorage.getItem("token");
 if (token) {
   Vue.prototype.$http.defaults.headers.common.authorization = token;
 }
+
+// Moment
+Vue.prototype.$moment = moment;
+
+Vue.use(
+  new VueSocketIO({
+    debug: false,
+    connection: "http://localhost:8000",
+    vuex: {
+      store,
+      actionPrefix: "SOCKET_",
+      mututationPrefix: "SOCKET_",
+    },
+  })
+);
 
 new Vue({
   router,
