@@ -117,7 +117,7 @@ export default {
 </script>
 
 <style>
-html, body, header {
+html, body {
   max-width: 100%;
   padding: 0;
   margin: 0;
