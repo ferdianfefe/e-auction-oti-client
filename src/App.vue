@@ -12,12 +12,19 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import Navbar from "@/components/Navbar";
 
 export default {
   name: "App",
   components: {
     Navbar,
+  },
+  methods: {
+    ...mapActions(["getMyProfile"]),
+  },
+  mounted() {
+    this.getMyProfile();
   },
 };
 </script>

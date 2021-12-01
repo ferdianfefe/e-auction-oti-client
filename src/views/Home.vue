@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-      <!-- image on top section -->
-    <img id="placeholder" src="../assets/auction-placeholder.jpeg" alt="">
+    <!-- image on top section -->
+    <img id="placeholder" src="../assets/auction-placeholder.jpeg" alt="" />
     <div class="d-flex container justify-content-end">
       <router-link to="/auction/new"
         ><button type="button" class="btn btn-primary">
@@ -9,7 +9,7 @@
         </button></router-link
       >
     </div>
-    <div class="container row">
+    <div class="container p-4 row">
       <div
         class="card col-3 mx-4"
         v-for="(auction, i) in auctions"
@@ -58,7 +58,7 @@ body {
   background: white;
 }
 
-#placeholder{
+#placeholder {
   width: 100%;
   height: auto;
 }

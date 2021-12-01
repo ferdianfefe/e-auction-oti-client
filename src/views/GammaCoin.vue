@@ -90,7 +90,6 @@ export default {
 <style>
 .gamma-coin {
   min-height: 100vh;
-  background-image: url("../assets/landing-bg.png");
   background-size: 100% 100%;
 }
 </style>

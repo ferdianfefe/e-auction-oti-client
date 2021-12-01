@@ -46,7 +46,9 @@
               v-model="user.confirmPassword"
             />
           </div>
-          <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+          <button type="submit" class="btn btn-primary mt-3 mr-3">
+            Sign Up
+          </button>
           <small class="text-white"
             >Already had an account?
             <router-link to="/" class="text-white">Sign in</router-link></small
@@ -101,7 +103,9 @@ export default {
         password: this.user.password,
       };
 
-      this.signup(userData);
+      this.signup(userData).then(() => {
+        this.$router.push("/signin");
+      });
     },
   },
 };

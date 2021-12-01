@@ -53,6 +53,18 @@ const actions = {
       throw error;
     }
   },
+  async getMyAuctions({ commit }) {
+    commit("auction_request");
+    try {
+      const response = await axios.get(API_URL + "my");
+      const data = response.data;
+      commit("get_my_auction_success", data);
+      return data;
+    } catch (error) {
+      commit("auction_error", error);
+      throw error;
+    }
+  },
 };
 
 const mutations = {
@@ -69,6 +81,10 @@ const mutations = {
   get_auction_by_id_success(state, data) {
     state.status = "success";
     state.currentAuction = data.value.auction;
+  },
+  get_my_auction_success(state, data) {
+    state.status = "success";
+    state.auctions = data.value.auctions;
   },
   auction_error(state, error) {
     state.status = "error";

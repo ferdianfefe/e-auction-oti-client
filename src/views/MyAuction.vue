@@ -10,7 +10,7 @@
     <div class="container row">
       <div
         class="card col-3 mx-4"
-        v-for="(auction, i) in auctions"
+        v-for="(auction, i) in myAuctions"
         :key="i"
         style="width: 18rem"
       >
@@ -35,10 +35,10 @@ export default {
   name: "Home",
   components: {},
   methods: {
-    ...mapActions(["getAllAuctions"]),
+    ...mapActions(["getMyAuctions"]),
   },
   computed: {
-    ...mapGetters(["auctions"]),
+    ...mapGetters(["myAuctions"]),
   },
   mounted() {
     this.getAllAuctions();
