@@ -47,18 +47,33 @@ const routes = [
     name: "Auction",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Auction.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/coin",
     name: "GammaCoin",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/GammaCoin.vue"),
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: "/chat",
     name: "Chat",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/Chat.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/Profile.vue"),
     meta: {
       requiresAuth: true,
     },

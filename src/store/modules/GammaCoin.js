@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8000/api/auction/";
+const API_URL = "http://localhost:8000/api/coin/";
 
 const state = {
   status: "",
@@ -17,60 +17,43 @@ const getters = {
 };
 
 const actions = {
-  async createAuction({ commit }, auction) {
-    commit("auction_request");
+  async topUp({ commit }, topUpData) {
+    commit("coin_request");
     try {
-      const response = await axios.post(API_URL, auction);
-      const data = response.data;
-      commit("create_auction_success", data);
+      const { data } = await axios.post(API_URL + "topup", topUpData);
+      commit("top_up_success", data);
       return data;
     } catch (error) {
-      commit("auction_error", error);
+      commit("coin_error", error);
       throw error;
     }
   },
-  async getAllAuctions({ commit }) {
-    commit("auction_request");
+
+  async transfer({ commit }, transferData) {
+    commit("coin_request");
     try {
-      const response = await axios.get(API_URL);
-      const data = response.data;
-      commit("get_all_auction_success", data);
+      const { data } = await axios.post(API_URL + "transfer", transferData);
+      commit("transfer_success", data);
+      console.log(transferData);
       return data;
     } catch (error) {
-      commit("auction_error", error);
-      throw error;
-    }
-  },
-  async getAuctionById({ commit }, id) {
-    commit("auction_request");
-    try {
-      const response = await axios.get(API_URL + id);
-      const data = response.data;
-      commit("get_auction_by_id_success", data);
-      return data;
-    } catch (error) {
-      commit("auction_error", error);
+      commit("coin_error", error);
       throw error;
     }
   },
 };
 
 const mutations = {
-  auction_request(state) {
+  coin_request(state) {
     state.status = "loading";
   },
-  create_auction_success(state, data) {
+  top_up_success(state, data) {
     state.status = "success";
   },
-  get_all_auction_success(state, data) {
+  transfer_success(state, data) {
     state.status = "success";
-    state.auctions = data.value.auctions;
   },
-  get_auction_by_id_success(state, data) {
-    state.status = "success";
-    state.currentAuction = data.value.auction;
-  },
-  auction_error(state, error) {
+  coin_error(state, error) {
     state.status = "error";
     state.error = error;
   },
