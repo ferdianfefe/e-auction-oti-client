@@ -43,6 +43,15 @@ const routes = [
     },
   },
   {
+    path: "/auction/me",
+    name: "MyAuctions",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/MyAuctions.vue"),
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
     path: "/auction/:id",
     name: "Auction",
     component: () =>

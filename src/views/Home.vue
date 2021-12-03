@@ -1,17 +1,17 @@
 <template>
   <div class="home">
-      <!-- image on top section -->
-    <img id="placeholder" src="../assets/auction-placeholder.jpeg" alt="">
+    <!-- image on top section -->
+    <img id="placeholder" src="../assets/auction-placeholder.jpeg" alt="" />
     <div class="d-flex container justify-content-end">
-      <router-link to="/auction/new"
+      <router-link to="/auction/me"
         ><button type="button" class="btn btn-primary">
-          Host Auction
+          My Auctions
         </button></router-link
       >
     </div>
     <div class="container row">
       <div
-        class="card col-3 mx-4"
+        class="card col-12 col-md-3 mx-4 m-0 m-md-3"
         v-for="(auction, i) in auctions"
         :key="i"
         style="width: 18rem"
@@ -22,9 +22,14 @@
           <p class="card-text">
             {{ auction.itemName }}
           </p>
-          <router-link :to="`/auction/${auction._id}`">
-            <button class="btn btn-primary">Bid</button></router-link
-          >
+          <div class="" v-if="auction.endDate == null">
+            <router-link :to="`/auction/${auction._id}`">
+              <button class="btn btn-primary">Bid</button></router-link
+            >
+          </div>
+          <div class="" v-else>
+            <button class="btn btn-primary" disabled>Auction Ended</button>
+          </div>
         </div>
       </div>
     </div>
@@ -58,7 +63,7 @@ body {
   background: white;
 }
 
-#placeholder{
+#placeholder {
   width: 100%;
   height: auto;
 }

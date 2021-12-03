@@ -3,7 +3,8 @@
     <ContactList class="contact-list" v-if="contacts" :contacts="contacts" />
     <Message class="message" v-if="activeContact != null" />
     <div v-else class="no-msg-placeholder w-100">
-      <img class src="@/assets/logo.png" alt />
+      <!-- <img class src="@/assets/logo.png" width="50px" alt /> -->
+      <small>Select one of the contacts to start chatting!</small>
     </div>
   </div>
 </template>
@@ -37,6 +38,7 @@ export default {
 
     this.getContacts();
     this.$socket.emit("online", localStorage.getItem("userId"));
+    console.log('destroyed');
   },
   beforeDestroy() {
     this.$socket.emit("offline", localStorage.getItem("userId"));

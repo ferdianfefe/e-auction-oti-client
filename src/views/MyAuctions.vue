@@ -1,16 +1,16 @@
 <template>
   <div class="home">
+    <!-- image on top section -->
+    <img id="placeholder" src="../assets/auction-placeholder.jpeg" alt="" />
     <div class="d-flex container justify-content-end">
       <router-link to="/auction/new"
-        ><button type="button" class="btn btn-primary">
-          Host Auction
-        </button></router-link
-      >
+        ><button type="button" class="btn btn-primary">Host an Auction</button>
+      </router-link>
     </div>
     <div class="container row">
       <div
-        class="card col-3 mx-4"
-        v-for="(auction, i) in auctions"
+        class="card col-12 col-md-3 mx-4 m-0 m-md-3"
+        v-for="(auction, i) in myAuctions"
         :key="i"
         style="width: 18rem"
       >
@@ -21,7 +21,7 @@
             {{ auction.itemName }}
           </p>
           <router-link :to="`/auction/${auction._id}`">
-            <button class="btn btn-primary">Bid</button></router-link
+            <button class="btn btn-primary">Detail</button></router-link
           >
         </div>
       </div>
@@ -35,13 +35,13 @@ export default {
   name: "Home",
   components: {},
   methods: {
-    ...mapActions(["getAllAuctions"]),
+    ...mapActions(["getAuctionsByUserID"]),
   },
   computed: {
-    ...mapGetters(["auctions"]),
+    ...mapGetters(["myAuctions", "user"]),
   },
   mounted() {
-    this.getAllAuctions();
+    this.getAuctionsByUserID(this.user.id);
   },
 };
 </script>
@@ -49,7 +49,15 @@ export default {
 <style>
 .home {
   min-height: 100vh;
-  background-image: url("../assets/landing-bg.png");
-  background-size: 100% 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
+}
+
+#placeholder {
+  width: 100%;
+  height: auto;
 }
 </style>

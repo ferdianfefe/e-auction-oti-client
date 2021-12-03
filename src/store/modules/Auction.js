@@ -7,6 +7,7 @@ const state = {
   error: "",
   auctions: [],
   currentAuction: {},
+  myAuctions: [],
 };
 
 const getters = {
@@ -14,6 +15,7 @@ const getters = {
   error: (state) => state.error,
   auctions: (state) => state.auctions,
   currentAuction: (state) => state.currentAuction,
+  myAuctions: (state) => state.myAuctions,
 };
 
 const actions = {
@@ -53,6 +55,44 @@ const actions = {
       throw error;
     }
   },
+
+  async getAuctionsByUserID({ commit }, id) {
+    commit("auction_request");
+    try {
+      console.log(id);
+      const { data } = await axios.get(API_URL + "user/" + id);
+      commit("get_auctions_by_user_id_success", data);
+      return data;
+    } catch (error) {
+      commit("auction_error", error);
+      throw error;
+    }
+  },
+
+  async deleteAuction({ commit }, id) {
+    commit("auction_request");
+    try {
+      const { data } = await axios.delete(API_URL + id);
+      commit("delete_auction_success", data);
+      return data;
+    } catch (error) {
+      commit("auction_error", error);
+      throw error;
+    }
+  },
+
+  async endAuction({ commit }, id) {
+    commit("auction_request");
+    try {
+      const { data } = await axios.put(API_URL + "end/" + id);
+      commit("end_auction_success", data);
+      return data;
+    } catch (error) {
+      commit("auction_error", error);
+      throw error;
+    }
+  },
+
   async placeBid({ commit }, bidData) {
     commit("auction_request");
     try {
@@ -81,6 +121,16 @@ const mutations = {
   get_auction_by_id_success(state, data) {
     state.status = "success";
     state.currentAuction = data.value.auction;
+  },
+  get_auctions_by_user_id_success(state, data) {
+    state.status = "success";
+    state.myAuctions = data.value.auctions;
+  },
+  delete_auction_success(state, data) {
+    state.status = "success";
+  },
+  end_auction_success(state, data) {
+    state.status = "success";
   },
   place_bid_success(state, data) {
     state.status = "success";

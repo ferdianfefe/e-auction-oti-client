@@ -21,10 +21,12 @@ export default {
     Navbar,
   },
   methods: {
-    ...mapActions(["getMyProfile"]),
+    ...mapActions(["getMyProfile", "logout"]),
   },
   mounted() {
-    this.getMyProfile();
+    this.getMyProfile().catch((err) => {
+      this.logout();
+    });
   },
 };
 </script>

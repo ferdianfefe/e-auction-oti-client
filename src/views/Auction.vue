@@ -27,12 +27,18 @@
       <div class="col-6">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">
-              <h2>{{ currentAuction.title }}</h2>
-            </h5>
+            <h2 class="card-title">
+              {{ currentAuction.title }}
+            </h2>
             <h6 class="card-subtitle mb-2 text-muted">
               {{ currentAuction.itemName }}
             </h6>
+            <small>
+              <span class="card-text text-muted">
+                Hosted by {{ currentAuction.user.name }} on
+                {{ currentAuction.startDate }}
+              </span>
+            </small>
             <p class="card-text">
               Some quick example text to build on the card title and make up the
               bulk of the card's content.
@@ -47,34 +53,65 @@
                 {{ currentAuction.currentBid }} GC
               </li>
             </ul>
-            <form class="" @submit.prevent="submitBid">
-              <div class="form-group">
-                <div
-                  class="u-form-group u-form-starting-price d-flex"
-                  id="item-price"
-                >
-                  <input
-                    type="number"
-                    class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
-                    id="starting-price"
-                    placeholder="Starting price (in GammaCoin)"
-                    v-model="bidData.bid"
-                  />
-                  <div class="input-group-prepend">
-                    <div class="input-group-text">GC</div>
+            <div v-if="currentAuction.user.id != user.id">
+              <form @submit.prevent="submitBid">
+                <div class="form-group">
+                  <div
+                    class="u-form-group u-form-starting-price d-flex"
+                    id="item-price"
+                  >
+                    <input
+                      type="number"
+                      class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
+                      id="starting-price"
+                      placeholder="Starting price (in GammaCoin)"
+                      v-model="bidData.bid"
+                    />
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">GC</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <button
-                type="submit"
-                class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1"
-              >
-                Place Bid
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1"
+                >
+                  Place Bid
+                </button>
+              </form>
+            </div>
+            <div v-else>
+              <h6>Participants</h6>
+              <ul class="list-group">
+                <li
+                  v-for="(participant, i) in currentAuction.participants"
+                  :key="i"
+                  class="list-group-item d-flex justify-content-between align-items-center"
+                >
+                  {{ participant.name }}
+                  <span class="badge badge-primary badge-pill">14</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="row mt-3">
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        @click="clickDeleteAuction"
+      >
+        Delete Auction
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-primary ml-3"
+        @click="clickEndAuction"
+      >
+        End Auction
+      </button>
     </div>
   </div>
 </template>
@@ -90,10 +127,15 @@ export default {
     },
   }),
   computed: {
-    ...mapGetters(["currentAuction"]),
+    ...mapGetters(["currentAuction", "user"]),
   },
   methods: {
-    ...mapActions(["getAuctionById", "placeBid"]),
+    ...mapActions([
+      "getAuctionById",
+      "placeBid",
+      "deleteAuction",
+      "endAuction",
+    ]),
     submitBid() {
       if (this.bidData.bid > 0) {
         this.placeBid({
@@ -102,13 +144,31 @@ export default {
         }).then(() => {
           this.bidData.bid = 0;
           this.getAuctionById(this.currentAuction._id);
+          this.$socket.emit("bid-updated", {
+            auctionId: this.currentAuction._id,
+          });
         });
       }
     },
+    clickDeleteAuction() {
+      this.deleteAuction(this.currentAuction._id).then(() => {
+        this.$router.push("/auctions/me");
+      });
+    },
+    clickEndAuction() {
+      this.endAuction(this.currentAuction._id);
+    },
   },
   mounted() {
-    this.getAuctionById(this.$route.params.id);
-    console.log(this.currentAuction);
+    this.getAuctionById(this.$route.params.id).then(() => {
+      console.log(this.currentAuction);
+    });
+
+    this.sockets.subscribe("bid-updated", (data) => {
+      if (data.auctionId == this.currentAuction._id) {
+        this.getAuctionById(this.currentAuction._id);
+      }
+    });
   },
 };
 </script>

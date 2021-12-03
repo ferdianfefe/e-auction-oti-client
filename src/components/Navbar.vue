@@ -19,7 +19,7 @@
         </router-link>
 
         <ul
-          class="nav col-12 col-lg-auto mr-lg-auto mb-2 justify-content-center mb-md-0"
+          class="nav col-12 col-lg-auto my-auto mr-lg-auto justify-content-center mb-md-0"
         >
           <li>
             <router-link class="nav-link px-2 link-dark" to="/"
@@ -63,24 +63,7 @@
               >Profile</router-link
             >
           </li>
-          <li class="">
-            <a
-              class="nav-link px-2 link-dark"
-              @click.prevent="logoutUser"
-              v-if="isAuthenticated"
-              >Logout</a
-            >
-          </li>
         </ul>
-
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 mr-lg-3">
-          <input
-            type="search"
-            class="form-control"
-            placeholder="Search..."
-            aria-label="Search"
-          />
-        </form>
         <div class="">
           <p class="my-auto text-purple font-weight-bold">
             Hi, {{ user.name }}
@@ -112,7 +95,9 @@
             >
             <b-dropdown-divider></b-dropdown-divider>
             <b-dropdown-item
-              ><a class="dropdown-item" href="#">Sign out</a></b-dropdown-item
+              ><a class="dropdown-item" href="#" @click.prevent="logoutUser"
+                >Sign out</a
+              ></b-dropdown-item
             >
           </b-dropdown>
         </div>

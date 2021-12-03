@@ -26,7 +26,7 @@ export default {
   name: "SearchBar",
   props: {
     results: [],
-    placeholder: "Search",
+    placeholder: "",
   },
   data() {
     return {
