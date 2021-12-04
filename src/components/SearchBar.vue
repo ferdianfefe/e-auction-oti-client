@@ -51,4 +51,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.list-group{
+  position: absolute;
+  width: 27vw;
+}
+</style>
