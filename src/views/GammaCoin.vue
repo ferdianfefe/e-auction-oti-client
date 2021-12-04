@@ -177,11 +177,11 @@ export default {
 .gamma-coin {
   margin: 0%;
   padding: 0%;
+  background: #f2f2f2;
 }
 .card {
   max-width: 60%;
 }
-
 .container-flex,
 .row {
   display: flex;
@@ -213,7 +213,7 @@ h4 {
   font-size: 2rem;
   font-family: Montserrat;
   text-align: center;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 #transfer {
@@ -221,7 +221,7 @@ h4 {
   margin: 12px;
 }
 #transfer input {
-  margin-top: 2rem;
+  margin-top: 24px;
 }
 /* responsive */
 @media (max-width: 1000px) {
@@ -255,6 +255,30 @@ h4 {
   }
 }
 
+// gammacoin amount
+#item-price{
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: flex-end;
+}
+#starting-price{
+  width: 90%;
+}
+.input-group-prepend {
+  width: 10%;
+  height: 3rem;
+}
+.input-group-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+  text-align: left;
+  background: none;
+  outline: none;
+  border: none;
+}
+// gammcoin amount
 #upload-img {
   margin: auto;
   width: 50%;
