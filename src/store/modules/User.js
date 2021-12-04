@@ -2,6 +2,7 @@ import axios from "axios";
 import router from "../../router";
 
 const API_URL = "http://localhost:8000/api/user/";
+// const API_URL = "/api/user/";
 
 const state = {
   user: {},

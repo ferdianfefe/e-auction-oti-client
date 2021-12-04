@@ -38,6 +38,7 @@ Vue.use(
   new VueSocketIO({
     debug: false,
     connection: "http://localhost:8000",
+    // connection: "/",
     vuex: {
       store,
       actionPrefix: "SOCKET_",

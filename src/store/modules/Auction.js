@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:8000/api/auction/";
+// const API_URL = "/api/auction/";
 
 const state = {
   status: "",
@@ -56,12 +57,11 @@ const actions = {
     }
   },
 
-  async getAuctionsByUserID({ commit }, id) {
+  async getMyAuctions({ commit }) {
     commit("auction_request");
     try {
-      console.log(id);
-      const { data } = await axios.get(API_URL + "user/" + id);
-      commit("get_auctions_by_user_id_success", data);
+      const { data } = await axios.get(API_URL + "me");
+      commit("get_my_auctions_success", data);
       return data;
     } catch (error) {
       commit("auction_error", error);
@@ -122,7 +122,7 @@ const mutations = {
     state.status = "success";
     state.currentAuction = data.value.auction;
   },
-  get_auctions_by_user_id_success(state, data) {
+  get_my_auctions_success(state, data) {
     state.status = "success";
     state.myAuctions = data.value.auctions;
   },

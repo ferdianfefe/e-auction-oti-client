@@ -82,14 +82,21 @@
             </div>
             <div v-else>
               <h6>Participants</h6>
-              <ul class="list-group">
+              <ul class="list-group" v-if="currentAuction.participants.length">
                 <li
-                  v-for="(participant, i) in currentAuction.participants"
+                  v-for="(participant, i) in sortedParticipants"
                   :key="i"
                   class="list-group-item d-flex justify-content-between align-items-center"
                 >
-                  {{ participant.name }}
-                  <span class="badge badge-primary badge-pill">14</span>
+                  {{ participant.user.name }}
+                  <span class="badge badge-primary badge-pill"
+                    >{{ participant.bid }} GC</span
+                  >
+                </li>
+              </ul>
+              <ul class="list-group" v-else>
+                <li class="list-group-item">
+                  <small class="text-muted">No participants yet</small>
                 </li>
               </ul>
             </div>
@@ -97,7 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="row mt-3">
+    <div class="row mt-3" v-if="currentAuction.user.id == user.id">
       <button
         type="button"
         class="btn btn-outline-danger"
@@ -128,6 +135,11 @@ export default {
   }),
   computed: {
     ...mapGetters(["currentAuction", "user"]),
+    sortedParticipants() {
+      return this.currentAuction.participants.sort((a, b) => {
+        return b.bid - a.bid;
+      });
+    },
   },
   methods: {
     ...mapActions([
@@ -152,7 +164,7 @@ export default {
     },
     clickDeleteAuction() {
       this.deleteAuction(this.currentAuction._id).then(() => {
-        this.$router.push("/auctions/me");
+        this.$router.push("/auction/me");
       });
     },
     clickEndAuction() {
@@ -167,6 +179,7 @@ export default {
     this.sockets.subscribe("bid-updated", (data) => {
       if (data.auctionId == this.currentAuction._id) {
         this.getAuctionById(this.currentAuction._id);
+        console.log(this.sortedParticipants);
       }
     });
   },

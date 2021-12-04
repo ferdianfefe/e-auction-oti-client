@@ -60,13 +60,7 @@ export default {
 };
 </script>
 
-<style>
-body {
-  font-family: Montserrat;
-  background: white;
-  margin: 0;
-  padding: 0;
-}
+<style lang="scss" scoped>
 /* flexbox start */
 .row {
   display: flex;
@@ -105,9 +99,9 @@ body {
   border-radius: 0%;
   width: 10rem;
 }
-.d-flex {
-  background: red;
-}
+// .d-flex {
+//   background: red;
+// }
 /* flexbox end */
 @media (max-width: 800px) {
   .row {

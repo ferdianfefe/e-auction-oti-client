@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="my-auctions">
     <!-- image on top section -->
     <img id="placeholder" src="../assets/auction-placeholder.jpeg" alt="" />
     <div class="d-flex container justify-content-end">
@@ -7,23 +7,28 @@
         ><button type="button" class="btn btn-primary">Host an Auction</button>
       </router-link>
     </div>
-    <div class="container row">
+    <div class="container row" v-if="myAuctions.length > 0">
       <div
         class="card col-12 col-md-3 mx-4 m-0 m-md-3"
-        v-for="(auction, i) in myAuctions"
+        v-for="(myAuction, i) in myAuctions"
         :key="i"
         style="width: 18rem"
       >
-        <img :src="auction.images[0].path" class="card-img-top" alt="..." />
+        <img :src="myAuction.images[0].path" class="card-img-top" alt="..." />
         <div class="card-body">
-          <h5 class="card-title">{{ auction.title }}</h5>
+          <h5 class="card-title">{{ myAuction.title }}</h5>
           <p class="card-text">
-            {{ auction.itemName }}
+            {{ myAuction.itemName }}
           </p>
-          <router-link :to="`/auction/${auction._id}`">
+          <router-link :to="`/auction/${myAuction._id}`">
             <button class="btn btn-primary">Detail</button></router-link
           >
         </div>
+      </div>
+    </div>
+    <div class="container row" v-else>
+      <div class="mx-auto">
+        <small class="text-muted">You have no auction</small>
       </div>
     </div>
   </div>
@@ -32,22 +37,24 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 export default {
-  name: "Home",
+  name: "MyAuctions",
   components: {},
   methods: {
-    ...mapActions(["getAuctionsByUserID"]),
+    ...mapActions(["getMyAuctions"]),
   },
   computed: {
-    ...mapGetters(["myAuctions", "user"]),
+    ...mapGetters(["myAuctions", "user", "status"]),
   },
-  mounted() {
-    this.getAuctionsByUserID(this.user.id);
+  created() {
+    this.getMyAuctions().then(() => {
+      console.log(this.myAuctions);
+    });
   },
 };
 </script>
 
-<style>
-.home {
+<style lang="scss" scoped>
+.my-auctions {
   min-height: 100vh;
 }
 body {

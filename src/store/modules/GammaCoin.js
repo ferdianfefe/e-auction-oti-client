@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const API_URL = "http://localhost:8000/api/coin/";
+// const API_URL = "/api/coin/";
 
 const state = {
   status: "",
