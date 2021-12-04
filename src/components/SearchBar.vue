@@ -7,7 +7,7 @@
         type="text"
         class="form-control"
       />
-      <ul class="list-group m-0">
+      <ul class="list-group m-0" id="searchbarthing" >
         <li
           class="list-group-item p-1 text-left"
           v-for="(result, i) in results"
@@ -52,8 +52,10 @@ export default {
 </script>
 
 <style>
-.list-group{
+#searchbarthing{
   position: absolute;
   width: 27vw;
+  z-index: 999;
 }
+
 </style>
