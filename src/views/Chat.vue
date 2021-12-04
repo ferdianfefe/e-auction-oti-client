@@ -38,14 +38,13 @@ export default {
 
     this.getContacts();
     this.$socket.emit("online", localStorage.getItem("userId"));
-    console.log('destroyed');
+    console.log("destroyed");
   },
   beforeDestroy() {
     this.$socket.emit("offline", localStorage.getItem("userId"));
   },
 };
 </script>
-scss
 <style lang="scss" scoped>
 .chat {
   display: grid;
@@ -66,5 +65,10 @@ scss
   h1 {
     text-align: center;
   }
+}
+
+.list-group {
+  position: static;
+  width: auto;
 }
 </style>

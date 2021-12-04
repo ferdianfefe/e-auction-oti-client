@@ -26,11 +26,7 @@
               >Home</router-link
             >
           </li>
-          <li>
-            <router-link class="nav-link px-2 link-dark" to="/about"
-              >About</router-link
-            >
-          </li>
+          
           <li class="">
             <router-link
               class="nav-link px-2 link-dark"
@@ -63,6 +59,11 @@
               >Profile</router-link
             >
           </li>
+          <li>
+            <router-link class="nav-link px-2 link-dark" to="/about"
+              >About</router-link
+            >
+          </li>
         </ul>
         <div class="">
           <p class="my-auto text-purple font-weight-bold">
@@ -74,7 +75,7 @@
             <template #button-content>
               <a>
                 <img
-                  src="https://github.com/mdo.png"
+                  :src="user.decodedProfileImage"
                   alt="mdo"
                   width="32"
                   height="32"

@@ -74,21 +74,21 @@
                 </div>
                 <button
                   type="submit"
-                  class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1"
+                  class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1 form-group"
                 >
                   Place Bid
                 </button>
               </form>
             </div>
-            <div v-else>
-              <h6>Participants</h6>
+            <div>
+              <h6>Bid Rank</h6>
               <ul class="list-group" v-if="currentAuction.participants.length">
                 <li
                   v-for="(participant, i) in sortedParticipants"
                   :key="i"
                   class="list-group-item d-flex justify-content-between align-items-center"
                 >
-                  {{ participant.user.name }}
+                  {{ participant.user.name }} {{participant.user.id == user.id ? '(You)' : ''}}
                   <span class="badge badge-primary badge-pill"
                     >{{ participant.bid }} GC</span
                   >
@@ -193,5 +193,14 @@ export default {
       cursor: pointer;
     }
   }
+}
+
+.list-group {
+  position: static;
+}
+
+form {
+  display: block;
+  padding: 0;
 }
 </style>

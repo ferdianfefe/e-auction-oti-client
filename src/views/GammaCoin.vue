@@ -1,96 +1,98 @@
 <template>
-  <div class="gamma-coin">
-    <div class="row p-5">
-      <!-- card 1 -->
-      <div class="card col-8 r-5">
-        <h4>Top Up</h4>
-        <div class="auction-forms">
-          <div class="container-flex">
-            <!-- left row -->
-            <div class="item" id="left">
-              <vue-upload-multiple-image
-                @upload-success="uploadImageSuccess"
-                @before-remove="beforeRemove"
-                @edit-image="editImage"
-                :data-images="topUpData.images"
-                idUpload="myIdUpload"
-                editUpload="myIdEdit"
-                dragText="Drop images here to upload"
-                browseText="Search images"
-                primaryText="Upload images"
-                markIsPrimaryText="Upload images"
-                popupText="Upload images"
-                dropText="Drop images here to upload"
-                id="upload-img"
-              >
-              </vue-upload-multiple-image>
-            </div>
-            <!-- right row -->
-            <div class="item">
-              <div class="form-group">
-                <input
-                  type="text"
-                  placeholder="Enter Item name"
-                  class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
-                  id="item-name"
-                  v-model="topUpData.itemName"
-                />
-                <button
-                  type="submit"
-                  class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1s"
-                  @click="submitTopUp"
+  <body class="gamma-coin">
+    <div class="container">
+      <div class="row">
+        <!-- card 1 -->
+        <div class="card col-12 col-md-6 mr-4">
+          <h4>Top Up</h4>
+          <div class="auction-forms row">
+            <div class="container-flex col">
+              <!-- left row -->
+              <div class="item" id="left">
+                <vue-upload-multiple-image
+                  @upload-success="uploadImageSuccess"
+                  @before-remove="beforeRemove"
+                  @edit-image="editImage"
+                  :data-images="topUpData.images"
+                  idUpload="myIdUpload"
+                  editUpload="myIdEdit"
+                  dragText="Drop images here to upload"
+                  browseText="Search images"
+                  primaryText="Upload images"
+                  markIsPrimaryText="Upload images"
+                  popupText="Upload images"
+                  dropText="Drop images here to upload"
+                  id="upload-img"
                 >
-                  Submit
-                </button>
+                </vue-upload-multiple-image>
+              </div>
+              <!-- right row -->
+              <div class="item">
+                <div class="form-group">
+                  <input
+                    type="text"
+                    placeholder="Enter Item name"
+                    class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
+                    id="item-name"
+                    v-model="topUpData.itemName"
+                  />
+                  <button
+                    type="submit"
+                    class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1s"
+                    @click="submitTopUp"
+                  >
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <!-- card 2 -->
-      <div class="card col-4">
-        <h4>Transfer</h4>
-        <div class="form-group" id="transfer">
-          <SearchBar
-            :results="foundUsers"
-            :placeholder="`Enter id or name from your contact`"
-            @search="searchUser"
-            @select="setReceiver"
-          />
-
-          <div
-            class="u-form-group u-form-starting-price d-flex"
-            id="item-price"
-          >
-            <input
-              type="number"
-              class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
-              id="starting-price"
-              placeholder="Starting price (in GammaCoin)"
-              v-model="transferData.amount"
+        <!-- card 2 -->
+        <div class="card col-md-4 col-12">
+          <h4>Transfer</h4>
+          <div class="form-group" id="transfer">
+            <SearchBar
+              :results="foundUsers"
+              :placeholder="`Enter id or name from your contact`"
+              @search="searchUser"
+              @select="setReceiver"
             />
-            <div class="input-group-prepend">
-              <div class="input-group-text">GC</div>
+
+            <div
+              class="u-form-group u-form-starting-price d-flex"
+              id="item-price"
+            >
+              <input
+                type="number"
+                class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
+                id="starting-price"
+                placeholder="Starting price (in GammaCoin)"
+                v-model="transferData.amount"
+              />
+              <div class="input-group-prepend">
+                <div class="input-group-text">GC</div>
+              </div>
             </div>
+            <input
+              type="password"
+              placeholder="Enter your pin"
+              class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
+              id="pin"
+              v-model="transferData.userPassword"
+            />
+            <button
+              type="submit"
+              class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1s"
+              @click="submitTransfer"
+            >
+              Submit
+            </button>
           </div>
-          <input
-            type="password"
-            placeholder="Enter your pin"
-            class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-input u-input-rectangle"
-            id="pin"
-            v-model="transferData.userPassword"
-          />
-          <button
-            type="submit"
-            class="u-active-palette-1-light-1 u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-text-body-alt-color u-btn-1s"
-            @click="submitTransfer"
-          >
-            Submit
-          </button>
         </div>
       </div>
     </div>
-  </div>
+  </body>
 </template>
 
 <script>
@@ -175,113 +177,118 @@ export default {
 
 <style lang="scss" scoped>
 .gamma-coin {
-  margin: 0%;
-  padding: 0%;
+  // margin: 0%;
+  // padding: 0%;
   background: #f2f2f2;
-}
-.card {
-  max-width: 60%;
-}
-.container-flex,
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: auto;
-  align-content: center;
-  text-align: center;
-}
 
-.container-flex {
-  min-height: 300px;
-  padding-right: 5rem;
-}
-.item {
-  flex: 1 0 auto;
-  margin: auto;
-  text-align: right;
-}
-.row {
-  align-content: space-between;
-}
-.card {
-  margin: 1rem;
-}
+  // .card {
+  //   max-width: 60%;
+  // }
+  // .container-flex,
+  // .row {
+  //   display: flex;
+  //   flex-wrap: wrap;
+  //   flex-direction: row;
+  //   justify-content: center;
+  //   align-items: auto;
+  //   align-content: center;
+  //   text-align: center;
+  // }
 
-h4 {
-  font-size: 2rem;
-  font-family: Montserrat;
-  text-align: center;
-  font-weight: 600;
-}
-
-#transfer {
-  text-align: right;
-  margin: 12px;
-}
-#transfer input {
-  margin-top: 24px;
-}
-/* responsive */
-@media (max-width: 1000px) {
-  .container,
-  .row {
-    flex-direction: column;
-  }
-  #upload-img {
-    margin: 0;
-  }
-  .container-flex {
-    padding-right: 0;
-  }
+  // .container-flex {
+  //   min-height: 300px;
+  //   padding-right: 5rem;
+  // }
   .item {
     flex: 1 0 auto;
     margin: auto;
-    text-align: center;
-  }
-  #upload-img {
-    margin: auto;
-    width: 0;
-    padding: 0;
-  }
-  .card {
-    min-width: 100vw;
-    margin: 0;
-    margin-bottom: 1rem;
+    text-align: right;
   }
   .row {
-    align-content: center;
+    align-content: space-between;
+  }
+  .card {
+    margin: 1rem;
+  }
+
+  
+  h4 {
+    font-size: 2rem;
+    font-family: Montserrat;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  #transfer {
+    text-align: right;
+    margin: 12px;
+  }
+  #transfer input {
+    margin-top: 24px;
+  }
+
+  // gammacoin amount
+  #item-price {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: flex-end;
+  }
+  #starting-price {
+    width: 90%;
+  }
+  .input-group-prepend {
+    width: 10%;
+    height: 3rem;
+  }
+  .input-group-text {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    text-align: left;
+    background: none;
+    outline: none;
+    border: none;
+  }
+  // gammcoin amount
+  #upload-img {
+    margin: auto;
+    width: 50%;
+    padding: 0;
   }
 }
 
-// gammacoin amount
-#item-price{
-  padding: 0;
-  margin: 0;
-  display: flex;
-  align-items: flex-end;
-}
-#starting-price{
-  width: 90%;
-}
-.input-group-prepend {
-  width: 10%;
-  height: 3rem;
-}
-.input-group-text {
-  font-family: Montserrat;
-  font-style: normal;
-  font-weight: 600;
-  text-align: left;
-  background: none;
-  outline: none;
-  border: none;
-}
-// gammcoin amount
-#upload-img {
-  margin: auto;
-  width: 50%;
-  padding: 0;
+/* responsive */
+@media (max-width: 1000px) {
+  .gamma-coin {
+    .container,
+    .row {
+      flex-direction: column;
+    }
+    #upload-img {
+      margin: 0;
+    }
+    .container-flex {
+      padding-right: 0;
+    }
+    .item {
+      flex: 1 0 auto;
+      margin: auto;
+      text-align: center;
+    }
+    #upload-img {
+      margin: auto;
+      width: 0;
+      padding: 0;
+    }
+    // .card {
+    //   min-width: 100vw;
+    //   margin: 0;
+    //   margin-bottom: 1rem;
+    // }
+    .row {
+      align-content: center;
+    }
+  }
 }
 </style>

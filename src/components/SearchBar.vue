@@ -37,7 +37,6 @@ export default {
     select(result) {
       this.results = [];
       this.search = result.name;
-      console.log(result);
       this.$emit("select", result);
     },
   },
