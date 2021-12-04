@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <!-- Intro -->
-	<div class="container top-bar text-center">
+	<div class="containerA top-bar text-center">
 		<br> <br>
 		<h2>The Most Innovative Digital Auction Platform</h2>
 		<p>
@@ -10,7 +10,7 @@
 	</div>
 	<!-- /Intro-->
 		
-  <div class="container">
+  <div class="containerA">
     
     <h3 class="text-center thin">Why Use Gamma?</h3>
     
@@ -50,7 +50,9 @@
 </template>
 
 <style lang="scss" scoped>
-
+.containerA{
+  min-height: 50vh;
+}
 .top-bar{
   background: linear-gradient(180deg, rgba(75, 24, 24, 0.58) 0%, rgba(3, 13, 52, 0.5) 68.75%, #141341 97.4%), 
   url("../assets/landing-bg.png");
@@ -92,6 +94,9 @@ p{
   text-align: center;
 }
 @media (max-width: 1000px) {
+  .containerA{
+  min-height: 60vh;
+  }
   .top-bar p{
     margin-left: 0;
     margin-right: 0;
