@@ -1,17 +1,26 @@
 <template>
+<body class="profile">
+  <h1 style="width: 100%">Profile</h1>
   <div class="container" v-if="user">
-    <div class="card mt-3" style="width: 18rem">
-      <img
+    <div class="card mt-3" id="img-items">
+        <img
         :src="
           user.img ||
-          'https://pruittcares.org/wp-content/uploads/bb-plugin/cache/placeholder-circle.jpg'
+          'https://cdn-icons-png.flaticon.com/512/149/149071.png'
         "
         alt
         class="w-100"
-      />
+        />
+      </div>
+
+    <div class="card mt-3" id="text-items">
+      <h4>{{ user.name }}</h4>
       <ul class="list-group list-group-flush">
+        <li class="list-group-item" id="category">Personal</li>
         <li class="list-group-item">Name: {{ user.name }}</li>
         <li class="list-group-item">Username: {{ user.username }}</li>
+
+        <li class="list-group-item" id="category">Transactions</li>
         <li class="list-group-item">Balance: {{ user.balance }}</li>
       </ul>
       <button
@@ -88,6 +97,8 @@
       </div>
     </div>
   </div>
+</body>
+ 
 </template>
 
 <script>
@@ -130,4 +141,74 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.profile{
+  margin: 4rem;
+  margin-top: 2rem; 
+}
+.container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* text */
+h1{
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 600;
+}
+h4{
+  margin: 1rem;
+  margin-bottom: 0;
+}
+#category{
+  background: #f2f2f2;
+  line-height: 29px;
+  color: #A9A9A9;
+  font-family: Montserrat;
+  font-weight: bold;
+  text-indent: 8px;
+}
+/* cards */
+.card{
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+#text-items{
+  padding-left: 0;
+  width: 100%;
+}
+#text-items ul{
+  margin: 2%;
+}
+#text-items ul, #text-items li{
+  width: auto;
+  border: none;
+  padding: 0;
+  margin-top: 16px;
+}
+#img-items{
+  max-width: 10rem;
+    background: none;
+
+}
+.card .btn{
+  width: 5rem;
+  margin: 1rem;
+}
+/* responsive */
+@media (max-width: 1000px) {
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  h1{
+    text-align:center;
+  }
+}
+
+</style>
